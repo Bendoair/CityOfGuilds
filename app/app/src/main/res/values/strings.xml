@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">City Of Guilds</string>
+    <string name="dialog_ok_button_text">Ok</string>
+    <string name="explore_the_city">Explore the city!</string>
+    <string name="dialog_dismiss_button_text">Close</string>
+    <string name="textfield_label_title">Title</string>
+    <string name="textfield_label_description">Description</string>
+    <string name="list_item_supporting_text">The due date is: %1$s</string>
+    <string name="text_empty_points_list">You haven\'t captured any Guilds yet.</string>
+    <string name="text_null_todo_list">Null response</string>
+    <string name="text_your_points_list">Your Guilds</string>
+    <string name="text_capture_point">Capture</string>
+    <string name="text_see_map">Guild-map</string>
+    <string name="app_bar_title_sign_up">Sign up</string>
+    <string name="some_error_message">Error</string>
+    <string name="textfield_label_email">Email</string>
+    <string name="textfield_label_password">Password</string>
+    <string name="textfield_label_confirm_password">Confirm Password</string>
+    <string name="button_text_sign_up">Sign Up</string>
+    <string name="button_text_no_account">I don\'t have an account yet.</string>
+    <string name="priority_title_none">none</string>
+    <string name="button_text_sign_in">Sign In</string>
+    <string name="text_home">Home</string>
+
+    <string name="no_guild_detected">No Guild detected!</string>
+    <string name="take_guild">Capture Guild!</string>
+    <string name="guild_ready_to_take">This Guild is Ripe for taking!</string>
+
+    <string name="NFC_disabled">NFC feature is disabled!</string>
+    <string name="NFC_rationel">NFC feature is need for this part of the app. You need it to scan the NFC tag of the Guild you want to capture.</string>
+    <string name="enable_NFC">Enable NFC in settings.</string>
+    <string name="enabled_NFC">I enabled NFC</string>
+    <string name="text_explain_game">Explore the Guilds that can be found by clicking the map icon, then capture them via NFC!</string>
+    <string name="devtools">DevTools</string>
+    <string name="continue_to_login">Continue to Login</string>
+    <string name="loading_please_wait">Loading, please wait...</string>
+</resources>

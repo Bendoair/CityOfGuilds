@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1072662123544",
+    "project_id": "cityofguilds-budapest",
+    "storage_bucket": "cityofguilds-budapest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072662123544:android:90bf3f08e62e2fe7481f6d",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.android.cityofguilds"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-j_1Fa_ogFqpBZXkGenHh4B6uX161pj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
