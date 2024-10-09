@@ -10,6 +10,6 @@ data class Point (
     val guildname: String = "",
     val coordinateX:Float = 0.0f,
     val coordinateY:Float = 0.0f,
-    var captureDate: kotlinx.datetime.LocalDateTime = java.time.LocalDateTime.now().toKotlinLocalDateTime(),
+    var captureDate: kotlinx.datetime.LocalDateTime = java.time.LocalDateTime.now().toKotlinLocalDateTime(), //Durva barbarizmus
     var ownerId: String = ""
 )

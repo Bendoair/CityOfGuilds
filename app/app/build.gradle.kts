@@ -67,6 +67,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
     implementation(libs.androidx.adaptive.android)
     implementation(libs.androidx.material3.adaptive.navigation.suite.android)
+    implementation(libs.play.services.location)
 
     //Firebase
     val firebaseBom = platform("com.google.firebase:firebase-bom:32.8.1")

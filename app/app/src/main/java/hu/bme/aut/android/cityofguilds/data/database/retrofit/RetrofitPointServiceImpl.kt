@@ -8,10 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+
 class RetrofitPointServiceImpl @Inject constructor(
     private val authService: AuthService,
     private val retrofitService: RetrofitService
 ) : PointService {
+
+    val TESTINGMODE = true
 
     override val points: Flow<List<Point>> = flow {
         emit(retrofitService.getAllPoints().map { it.toPoint() })
@@ -55,6 +58,9 @@ class RetrofitPointServiceImpl @Inject constructor(
     }
 
     override suspend fun getUser(id: String) : User?{
+        if(TESTINGMODE){
+            return User(id = "szia", 20, true)
+        }
         return retrofitService.getUser(id)
     }
 }

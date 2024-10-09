@@ -33,6 +33,7 @@ import androidx.window.core.layout.WindowWidthSizeClass
 import hu.bme.aut.android.cityofguilds.R
 import hu.bme.aut.android.cityofguilds.feature.auth.UserDataCheatSheet
 import hu.bme.aut.android.cityofguilds.feature.capture.CaptureScreen
+import hu.bme.aut.android.cityofguilds.feature.devtools.DevToolsScreen
 import hu.bme.aut.android.cityofguilds.feature.list.ListScreen
 import hu.bme.aut.android.cityofguilds.feature.map.MapScreen
 import hu.bme.aut.android.cityofguilds.navigation.ContentDestinations
@@ -113,7 +114,12 @@ fun MainScreen (
                     //On dismissing the alert dialog, that you have to turn on NFC return to home screen
                     currentDestination = ContentDestinations.HOME
                 }
-            else -> HomeScreen(logout = logout)
+            ContentDestinations.DEVTOOLS -> DevToolsScreen()
+            else -> HomeScreen(logout = {
+                //If we don't sign out via the Auth Service we might run into lots of problems
+                mainScreenViewModel.signOutAndClearCache()
+                logout()
+            })
 
         }
 
