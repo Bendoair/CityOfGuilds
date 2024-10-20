@@ -14,7 +14,7 @@ class RetrofitPointServiceImpl @Inject constructor(
     private val retrofitService: RetrofitService
 ) : PointService {
 
-    val TESTINGMODE = true
+    val TESTINGMODE = false
 
     override val points: Flow<List<Point>> = flow {
         emit(retrofitService.getAllPoints().map { it.toPoint() })

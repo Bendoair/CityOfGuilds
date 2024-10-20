@@ -91,6 +91,10 @@ class NfcHandlerViewModel @Inject constructor(
                 )
                 ndef.writeNdefMessage(message)
                 ndef?.close()
+                Log.i("Add Point", "NFC written, starting Database things")
+                //Double bangs is justified because of the above null check
+                //We dont do that multi thread things
+                repository.addNewPoint(state.value.pointInfo!!)
                 _state.update {
                     it.copy(
                         newInfo = false,

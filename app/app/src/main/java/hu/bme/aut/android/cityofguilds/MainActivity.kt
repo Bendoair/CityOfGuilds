@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import hu.bme.aut.android.cityofguilds.feature.capture.NfcHandlerViewModel
+import hu.bme.aut.android.cityofguilds.feature.games.multilock.MultilockGameScreen
 import hu.bme.aut.android.cityofguilds.navigation.NavGraph
 import hu.bme.aut.android.cityofguilds.ui.theme.CityOfGuildsTheme
 
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContent {
             CityOfGuildsTheme {
-                NavGraph()
+                MultilockGameScreen(3, this)
             }
         }
     }
