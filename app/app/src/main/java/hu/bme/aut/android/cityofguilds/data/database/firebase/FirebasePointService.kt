@@ -41,9 +41,12 @@ class FirebasePointService (
         return firestore.collection(POINTS_COLLECTION).get().await().toObjects<FirebasePoint>().singleOrNull()?.asPoint()
     }
 
-    override suspend fun addNewPoint(point: Point) {
+    override suspend fun addNewPoint(point: Point) :Point {
         if(authService.hasUser){
             firestore.collection(POINTS_COLLECTION).add(point.asFirebasePoint())
+            return firestore.collection(POINTS_COLLECTION).get().await().toObjects<FirebasePoint>().first().asPoint()
+        }else{
+            return Point()
         }
     }
 

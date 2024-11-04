@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -31,6 +32,7 @@ import com.google.maps.android.compose.*
 import hu.bme.aut.android.cityofguilds.R
 import hu.bme.aut.android.cityofguilds.ui.model.CapturePointListItem
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
+import hu.bme.aut.android.cityofguilds.ui.util.TestTags
 
 
 @SuppressLint("ResourceAsColor")
@@ -42,7 +44,7 @@ fun MapScreen(
     val context = LocalContext.current
 
     Scaffold (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().testTag(TestTags.MAP_SCREEN)
     ){padding->
         Box(
             modifier = Modifier

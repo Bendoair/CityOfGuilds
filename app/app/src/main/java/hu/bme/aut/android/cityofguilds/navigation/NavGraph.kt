@@ -69,11 +69,11 @@ fun NavGraph(
         composable(Screen.Main.route){
             MainScreen(
                 logout = {
+
                     navController.popBackStack(
                         route = Screen.Login.route,
                         inclusive = true
                     )
-
 
                     navController.navigate(Screen.Login.route)
                 }

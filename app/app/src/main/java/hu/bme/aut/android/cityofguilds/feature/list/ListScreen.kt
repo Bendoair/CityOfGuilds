@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -32,6 +33,8 @@ import com.google.android.play.integrity.internal.i
 import hu.bme.aut.android.cityofguilds.R
 import hu.bme.aut.android.cityofguilds.ui.model.CapturePointListItem
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
+import hu.bme.aut.android.cityofguilds.ui.theme.ParchmentBrown
+import hu.bme.aut.android.cityofguilds.ui.util.TestTags
 import javax.inject.Inject
 
 
@@ -44,7 +47,7 @@ fun ListScreen (
     val context = LocalContext.current
 
     Scaffold (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().testTag(TestTags.LIST_SCREEN)
     ){padding->
         Box(
             modifier = Modifier
@@ -75,22 +78,19 @@ fun ListScreen (
                 }else{
                     LazyColumn (
                         modifier = Modifier
-                            .fillMaxSize(0.98f)
-                            .padding(padding)
-                            .clip(RoundedCornerShape(5.dp))
+                            .fillMaxSize()
+
                     ){
                         items(state.points.size){ i ->
-                            ListItem(
-                                headlineContent = { CapturePointListItem(point = state.points[i])},
-                                modifier = Modifier
-                                    .background(Color.Transparent)
 
-                            )
+
+                            CapturePointListItem(point = state.points[i])
+
 
                             if(i != state.points.lastIndex){
                                 HorizontalDivider(
                                     thickness = 3.dp,
-                                    color = Color.Black
+                                    color = ParchmentBrown
                                 )
                             }
                             

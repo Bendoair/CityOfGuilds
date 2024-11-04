@@ -13,3 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 val Sky = Color(0xFF3691D9)
 val DarkSky = Color(0xEE254360)
 val SkyPie = Color(0xEE254360)
+
+val ParchmentBrown = Color(0xFF6E594F)

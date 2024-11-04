@@ -9,7 +9,7 @@ interface PointService {
 
     suspend fun getPoint(id: String): Point?
 
-    suspend fun addNewPoint(point: Point)
+    suspend fun addNewPoint(point: Point) : Point
 
     suspend fun capturePoint(pointId:String, userId:String):Boolean
 

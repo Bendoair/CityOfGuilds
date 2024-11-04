@@ -24,8 +24,8 @@ class RetrofitPointServiceImpl @Inject constructor(
         return retrofitService.getPoint(id)?.toPoint()
     }
 
-    override suspend fun addNewPoint(point: Point) {
-        retrofitService.addNewPoint(point.toDTO())
+    override suspend fun addNewPoint(point: Point) : Point {
+       return retrofitService.addNewPoint(point.toDTO()).toPoint()
     }
 
     override suspend fun capturePoint(pointId: String, userId: String): Boolean {

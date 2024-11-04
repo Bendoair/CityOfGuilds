@@ -83,6 +83,21 @@ class NfcHandlerViewModel @Inject constructor(
                     Log.e("NFC", "Write Tag Data is not correct, it is empty!")
                     return@launch
                 }
+
+                //First write into database to get ID as well
+                //addNewPoint returns the database instance
+                val pointInDatabase = repository.addNewPoint(state.value.pointInfo!!)
+                _state.update {
+                    it.copy(
+                        pointInfo = pointInDatabase
+                    )
+                }
+
+                if(_state.value.pointInfo?.id == null){
+                    Log.e("NFC", "Point in database with ID of null??")
+                }
+
+                //Now we can write the tag
                 val ndef = Ndef.get(tag)
                 ndef?.connect()
                 val message = NdefMessage(
@@ -93,8 +108,6 @@ class NfcHandlerViewModel @Inject constructor(
                 ndef?.close()
                 Log.i("Add Point", "NFC written, starting Database things")
                 //Double bangs is justified because of the above null check
-                //We dont do that multi thread things
-                repository.addNewPoint(state.value.pointInfo!!)
                 _state.update {
                     it.copy(
                         newInfo = false,
@@ -149,8 +162,10 @@ class NfcHandlerViewModel @Inject constructor(
     }
     private suspend fun captureGuild():Boolean {
 
+
         val id = state.value.pointInfo?.id?:""
         val guildCaptured = pointOperations.captureGuildUseCase(id, authService.currentUserId?:"", repository)
+        Log.i("Capture", "Tried capturing guild with id: $id, the resulting guild was: $guildCaptured")
         return guildCaptured
     }
 

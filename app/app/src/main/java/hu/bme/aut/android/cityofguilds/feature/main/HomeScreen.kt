@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextPainter.paint
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import hu.bme.aut.android.cityofguilds.R
 import hu.bme.aut.android.cityofguilds.ui.common.GuildAppBar
+import hu.bme.aut.android.cityofguilds.ui.util.TestTags
 import kotlin.math.log
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +44,7 @@ fun HomeScreen(
                 onNavigateBack = logout
             )
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().testTag(TestTags.HOME_SCREEN)
     ) { padding ->
 
 

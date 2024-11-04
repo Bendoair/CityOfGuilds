@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,6 +40,7 @@ import hu.bme.aut.android.cityofguilds.feature.map.MapScreen
 import hu.bme.aut.android.cityofguilds.navigation.ContentDestinations
 
 import hu.bme.aut.android.cityofguilds.ui.common.GuildAppBar
+import hu.bme.aut.android.cityofguilds.ui.util.TestTags
 
 
 import hu.bme.aut.android.cityofguilds.R.string as StringResources
@@ -99,7 +101,8 @@ fun MainScreen (
             }
         },
         containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        modifier = Modifier.testTag(TestTags.MAIN_SCREEN)
     ){
         when(currentDestination){
             ContentDestinations.HOME -> HomeScreen(logout = {
@@ -113,6 +116,8 @@ fun MainScreen (
                 CaptureScreen(){
                     //On dismissing the alert dialog, that you have to turn on NFC return to home screen
                     currentDestination = ContentDestinations.HOME
+                    //onSuccessInGame,
+                    //onFailInGame,
                 }
             ContentDestinations.DEVTOOLS -> DevToolsScreen()
             else -> HomeScreen(logout = {
@@ -125,68 +130,7 @@ fun MainScreen (
 
     }
 
-    /*
-    Scaffold (
-        topBar = {
-            GuildAppBar(
-                title = stringResource(id = StringResources.explore_the_city),
-                actions = {  },
-                onNavigateBack = onNavigateBack
-            )
-        },
-        modifier = Modifier.fillMaxSize()
-    ) { padding ->
 
-
-        ConstraintLayout(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .paint(
-                    painterResource(id = R.drawable.background),
-                    contentScale = ContentScale.FillBounds
-                )
-
-        ) {
-            val (listButton, captureButton, mapButton) = createRefs()
-            val centerGuideLine = createGuidelineFromTop(0.5f)
-            val centerTopGuideLine = createGuidelineFromTop(0.45f)
-
-            OutlinedButton(
-                modifier = Modifier
-                    .constrainAs(listButton) {
-                        bottom.linkTo(centerTopGuideLine, margin = 16.dp)
-                        end.linkTo(parent.end, margin = 16.dp)
-                    },
-                onClick = { onListPointsClick() }
-            ) {
-                Text(text = stringResource(id = StringResources.text_your_points_list))
-            }
-
-            OutlinedButton(
-                modifier = Modifier
-                    .constrainAs(captureButton) {
-                        top.linkTo(centerGuideLine)
-                        start.linkTo(parent.start, margin = 16.dp)
-                    },
-                onClick = { onCapturePointClick() }
-            ) {
-                Text(text = stringResource(id = StringResources.text_capture_point))
-            }
-
-            OutlinedButton(
-                modifier = Modifier
-                    .constrainAs(mapButton) {
-                        top.linkTo(centerGuideLine, margin = 60.dp)
-                        end.linkTo(parent.end, margin = 20.dp)
-                    },
-                onClick = { onViewPointMap() },
-            ) {
-                Text(text = stringResource(id = StringResources.text_see_map))
-            }
-        }
-    }
-    */
 
 
 }

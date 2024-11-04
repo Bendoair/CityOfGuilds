@@ -14,12 +14,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import hu.bme.aut.android.cityofguilds.ui.util.TestTags
 import hu.bme.aut.android.cityofguilds.ui.util.UiEvent
 import hu.bme.aut.android.todo.ui.common.EmailTextField
 import hu.bme.aut.android.todo.ui.common.PasswordTextField
@@ -61,7 +63,9 @@ fun LoginScreen(
 
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+                    .fillMaxSize()
+                    .testTag(TestTags.LOGIN_SCREEN)
     ) { padding ->
         Column(
             modifier = Modifier

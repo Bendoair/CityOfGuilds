@@ -36,6 +36,6 @@ interface RetrofitService {
     suspend fun getUser(@Path("userId") userId: String): User?
 
     companion object{
-        const val BASE_URL = "http://188.6.3.79:8080/" //188.6.3.79:8080/
+        const val BASE_URL = "http://46.139.171.101:8080/" //188.6.3.79:8080/
     }
 }

@@ -3,6 +3,7 @@ package hu.bme.aut.android.cityofguilds
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -15,7 +16,9 @@ import hu.bme.aut.android.cityofguilds.ui.theme.CityOfGuildsTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     private val NFCviewModel:NfcHandlerViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         NFCviewModel.initializeNfcAdapter(this)
@@ -23,7 +26,7 @@ class MainActivity : ComponentActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContent {
             CityOfGuildsTheme {
-                MultilockGameScreen(3, this)
+                NavGraph()
             }
         }
     }

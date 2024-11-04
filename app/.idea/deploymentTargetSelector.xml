@@ -4,16 +4,28 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-10-20T07:48:30.135147400Z">
+        <DropdownSelection timestamp="2024-10-24T09:36:02.927116400Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\bened\.android\avd\PLS_work.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\bened\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="previewHome">
+      <SelectionState runConfigName="NavGraphTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="continue_to_login_button_is_clicked_navigates()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testHomeNavigation()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="MainScreenNavigationTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="test_buttons_are_correct()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

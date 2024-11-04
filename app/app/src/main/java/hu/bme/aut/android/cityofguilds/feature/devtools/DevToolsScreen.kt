@@ -85,14 +85,14 @@ fun DevToolsScreen(
             isLocationGranted = true
             Log.i("Location","We got here, somehow")
 
-            fusedLocationClient.getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, null)
+            fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
                 .addOnSuccessListener { location: Location? ->
                     if(location != null){
                         isLocationFresh = true
                         coordX = location.latitude.toFloat()
                         coordY = location.longitude.toFloat()
                     }else{
-                        Log.e("Location", "Got null Location for some fucking reason")
+                        Log.e("Location", "Got null Location for some 1 reason")
                     }
 
                 }
@@ -107,7 +107,7 @@ fun DevToolsScreen(
                         coordX = location.latitude.toFloat()
                         coordY = location.longitude.toFloat()
                     }else{
-                        Log.e("Location", "Got null Location for some fucking reason")
+                        Log.e("Location", "Got null Location for some 2 reason")
                     }
 
                 }
@@ -166,6 +166,8 @@ fun DevToolsScreen(
                                 )
                             )
 
+
+
                         },
                         enabled = isLocationFresh
                     ) {
@@ -217,8 +219,8 @@ fun DevToolsScreen(
                             shape = CircleShape,
                             onClick = {
                                 //TODO fix current location via fusedLocationProvider
-                                isLocationFresh = true
-                                //updateLocation()
+                                //isLocationFresh = true
+                                updateLocation()
                             },
                         ) { Text("Update Current Location")}
                     }

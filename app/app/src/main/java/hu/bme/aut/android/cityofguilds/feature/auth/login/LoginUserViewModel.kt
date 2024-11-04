@@ -81,7 +81,7 @@ class LoginUserViewModel @Inject constructor(
                     } else {
                         Log.i("login" ,"Why doesn't this run")
                         authService.authenticate(email,password)
-                        Log.i("login" ,"Why doesn't this run2")
+                        Log.i("login" ,"Why doesn't this run2 ${authService.currentUserId}")
                         UserDataCheatSheet.currentUser = pointService.getUser(authService.currentUserId?:"")
                         Log.i("login" ,"Why doesn't this run 3")
 

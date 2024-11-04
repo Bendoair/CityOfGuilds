@@ -18,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "hu.bme.aut.android.cityofguilds.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
