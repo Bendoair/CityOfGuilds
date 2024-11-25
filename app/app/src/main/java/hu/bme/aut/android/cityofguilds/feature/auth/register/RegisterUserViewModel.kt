@@ -12,7 +12,6 @@ import hu.bme.aut.android.cityofguilds.data.auth.AuthService
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.domain.usecases.IsEmailValidUseCase
 import hu.bme.aut.android.cityofguilds.domain.usecases.PasswordsMatchUseCase
-import hu.bme.aut.android.cityofguilds.feature.auth.UserDataCheatSheet
 import hu.bme.aut.android.cityofguilds.ui.model.UiText
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
 import hu.bme.aut.android.cityofguilds.ui.util.UiEvent
@@ -89,13 +88,7 @@ class RegisterUserViewModel @Inject constructor(
                         )
                     } else {
                         authService.signUp(email, password)
-                        if(authService.hasUser){
-                            pointService.addNewUser(authService.currentUserId!!)
 
-                        }
-
-                        UserDataCheatSheet.currentUser = pointService.getUser(authService.currentUserId?:"")
-                        Log.i("UserCheatSheet", "Curr user: ${UserDataCheatSheet.currentUser}")
 
                         _uiEvent.send(UiEvent.Success)
                     }

@@ -5,8 +5,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.scopes.ViewModelScoped
 import hu.bme.aut.android.cityofguilds.data.auth.AuthService
-import hu.bme.aut.android.cityofguilds.feature.auth.UserDataCheatSheet
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,10 +15,12 @@ class MainScreenViewModel @Inject constructor(
     private val authService: AuthService
 ) : ViewModel() {
 
+    val currentUser get() = runBlocking { authService.currentUser.first() }
+
     fun signOutAndClearCache(){
         viewModelScope.launch{
             authService.signOut()
-            UserDataCheatSheet.currentUser = null
         }
     }
+
 }

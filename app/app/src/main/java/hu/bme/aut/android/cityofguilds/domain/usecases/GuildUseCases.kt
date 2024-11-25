@@ -8,5 +8,4 @@ class GuildUseCases(
     val listAllUseCase: ListAllPointsUseCase,
     val listOwnUseCase: ListOwnPointsUseCase,
     val captureGuildUseCase: CaptureGuildUseCase
-) {
-}
+)

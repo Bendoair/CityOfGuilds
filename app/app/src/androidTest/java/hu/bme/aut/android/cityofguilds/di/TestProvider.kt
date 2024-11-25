@@ -6,7 +6,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import hu.bme.aut.android.cityofguilds.data.auth.AuthService
-import hu.bme.aut.android.cityofguilds.data.auth.FirebaseAuthService
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.data.database.retrofit.RetrofitPointServiceImpl
 import hu.bme.aut.android.cityofguilds.data.database.retrofit.RetrofitService

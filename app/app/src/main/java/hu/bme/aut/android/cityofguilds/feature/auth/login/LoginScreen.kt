@@ -1,6 +1,7 @@
 package hu.bme.aut.android.cityofguilds.feature.auth.login
 
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -56,6 +57,9 @@ fun LoginScreen(
                             message = event.message.asString(context)
                         )
                     }
+                }
+                else -> {
+                    Log.e("login", "something very unusual happened")
                 }
             }
         }

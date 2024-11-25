@@ -49,24 +49,30 @@ class MapViewModel @Inject constructor(
     private fun loadPoints() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-            try {
-                CoroutineScope(coroutineContext).launch(Dispatchers.IO) {
-                    val points = pointOperations.listAllUseCase.invoke(repository).map { it.asCapturePointUi() }
+            CoroutineScope(coroutineContext).launch(Dispatchers.IO) {
+                try {
+                    val points = pointOperations.listAllUseCase.invoke(repository)
+                        .map { it.asCapturePointUi() }
+                    if (points.isEmpty()) {
+                        throw Exception("There are no points on the map!")
+                    }
                     val update = getCameraPositionUpdate(points)
-                    _state.value.cameraPositionState.position = CameraPosition.fromLatLngZoom(update, 10f)
+                    _state.value.cameraPositionState.position =
+                        CameraPosition.fromLatLngZoom(update, 10f)
                     _state.update {
                         it.copy(
                             isLoading = false,
                             points = points,
                         )
                     }
-                }
-            }catch (e:Exception){
-                _state.update {
-                    it.copy(
-                        isLoading = false,
-                        error = e
-                    )
+
+                } catch (e:Exception){
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            error = e
+                        )
+                    }
                 }
             }
         }

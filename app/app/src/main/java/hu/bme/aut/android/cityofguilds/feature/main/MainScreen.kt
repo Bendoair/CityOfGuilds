@@ -32,7 +32,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.window.core.layout.WindowWidthSizeClass
 import hu.bme.aut.android.cityofguilds.R
-import hu.bme.aut.android.cityofguilds.feature.auth.UserDataCheatSheet
 import hu.bme.aut.android.cityofguilds.feature.capture.CaptureScreen
 import hu.bme.aut.android.cityofguilds.feature.devtools.DevToolsScreen
 import hu.bme.aut.android.cityofguilds.feature.list.ListScreen
@@ -67,7 +66,7 @@ fun MainScreen (
                 when(it){
                     ContentDestinations.DEVTOOLS -> {
                         //Kicsit hack
-                        if(UserDataCheatSheet.currentUser?.isDeveloper == true){
+                        if(mainScreenViewModel.currentUser?.isDeveloper == true){
                             item(
                                 icon = {
                                     Icon(
@@ -80,7 +79,7 @@ fun MainScreen (
                                 onClick = { currentDestination = it }
                             )
                         }
-                        Log.i("DEVTOOLS", "Account is developer: ${UserDataCheatSheet.currentUser?.isDeveloper}")
+                        Log.i("DEVTOOLS", "Account is developer: ${mainScreenViewModel.currentUser?.isDeveloper}")
                     }
 
 

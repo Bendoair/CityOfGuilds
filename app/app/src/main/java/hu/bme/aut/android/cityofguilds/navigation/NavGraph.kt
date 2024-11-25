@@ -44,6 +44,10 @@ fun NavGraph(
         composable(Screen.Login.route) {
             LoginScreen(
                 onSuccess = {
+                    navController.popBackStack(
+                        route = Screen.Login.route,
+                        inclusive = true
+                    )
                     navController.navigate(Screen.Main.route)
                     Log.i("Login", "Login button pressed")
                 },

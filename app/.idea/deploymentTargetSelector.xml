@@ -19,13 +19,13 @@
       <SelectionState runConfigName="continue_to_login_button_is_clicked_navigates()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testHomeNavigation()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="MainScreenNavigationTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="test_buttons_are_correct()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="continue_to_register_button_is_clicked_navigates()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

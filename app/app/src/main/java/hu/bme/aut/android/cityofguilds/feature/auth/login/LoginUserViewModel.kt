@@ -11,7 +11,6 @@ import hu.bme.aut.android.cityofguilds.GuildApplication
 import hu.bme.aut.android.cityofguilds.data.auth.AuthService
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.domain.usecases.IsEmailValidUseCase
-import hu.bme.aut.android.cityofguilds.feature.auth.UserDataCheatSheet
 import hu.bme.aut.android.cityofguilds.ui.model.UiText
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
 import hu.bme.aut.android.cityofguilds.ui.util.UiEvent
@@ -23,6 +22,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 import hu.bme.aut.android.cityofguilds.R.string as StringResources
@@ -68,7 +68,7 @@ class LoginUserViewModel @Inject constructor(
     private fun onSignIn() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                Log.i("login" ,"Login got to this point")
+                Log.i("login" ,"Login started")
                 if (!isEmailValid(email)) {
                     _uiEvent.send(
                         UiEvent.Failure(UiText.StringResource(StringResources.some_error_message))
@@ -79,18 +79,21 @@ class LoginUserViewModel @Inject constructor(
                             UiEvent.Failure(UiText.StringResource(StringResources.some_error_message))
                         )
                     } else {
-                        Log.i("login" ,"Why doesn't this run")
-                        authService.authenticate(email,password)
-                        Log.i("login" ,"Why doesn't this run2 ${authService.currentUserId}")
-                        UserDataCheatSheet.currentUser = pointService.getUser(authService.currentUserId?:"")
-                        Log.i("login" ,"Why doesn't this run 3")
 
-                        Log.i("UserCheatSheet", "Curr user: ${UserDataCheatSheet.currentUser}")
-                        _uiEvent.send(UiEvent.Success)
+                        Log.i("login", "authenticate called")
+                        authService.authenticate(email, password)
+                        Log.i("login", "authenticate finished")
+                        if(authService.hasUser){
+                            _uiEvent.send(UiEvent.Success)
+                        }else{
+                            _uiEvent.send(UiEvent.Failure(UiText.DynamicString("Wrong Credentials")))
+                        }
+
                     }
                 }
             } catch (e: Exception) {
                 _uiEvent.send(UiEvent.Failure(e.toUiText()))
+
             }
         }
     }

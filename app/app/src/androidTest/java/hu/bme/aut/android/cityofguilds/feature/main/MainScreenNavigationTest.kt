@@ -15,6 +15,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import hu.bme.aut.android.cityofguilds.HiltTestRunner
 import hu.bme.aut.android.cityofguilds.MainActivity
+import hu.bme.aut.android.cityofguilds.TestActivity
 import hu.bme.aut.android.cityofguilds.data.di.ServiceModule
 import hu.bme.aut.android.cityofguilds.dummyClasses.DummyAuthService
 import hu.bme.aut.android.cityofguilds.navigation.ContentDestinations
@@ -53,6 +54,7 @@ class MainScreenNavigationTest{
             .onNodeWithText("Home")
             .assertIsDisplayed()
 
+
         composeRule
             .onNodeWithText("Capture")
             .assertIsDisplayed()
@@ -60,6 +62,7 @@ class MainScreenNavigationTest{
         composeRule
             .onNodeWithText("Your Guilds")
             .assertIsDisplayed()
+
 
         composeRule
             .onNodeWithText("Guild-map")

@@ -31,16 +31,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import hu.bme.aut.android.cityofguilds.R
-import hu.bme.aut.android.cityofguilds.feature.list.ListViewModel
 import kotlinx.coroutines.delay
 
 @Composable
@@ -78,6 +74,9 @@ fun LoadScreen (
 
     // LaunchedEffect to show the button after 5 seconds
     LaunchedEffect(Unit) {
+        //Try And find user
+        viewModel.userAlreadyLoggedIn()
+
         delay(5000L)
         showButton = true
     }
@@ -95,8 +94,7 @@ fun LoadScreen (
         contentAlignment = Alignment.Center,
 
     ) {
-        //Try And find user
-        viewModel.UserAlreadyLoggedIn()
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -126,18 +124,14 @@ fun LoadScreen (
 
             // Button becomes visible after 5 seconds
             Spacer(modifier = Modifier.height(24.dp)) // Space between text and button
-            AnimatedVisibility(
-                visible = showButton,
-                enter = fadeIn()
 
+            Button(
+                onClick = { onNoUserFound() },
+                shape = CircleShape
             ) {
-                Button(
-                    onClick = { onNoUserFound() },
-                    shape = CircleShape
-                ) {
-                    Text(text = stringResource(R.string.continue_to_login))
-                }
+                Text(text = stringResource(R.string.continue_to_login))
             }
+
         }
     }
 }
