@@ -58,7 +58,7 @@ Fig 2: Home Screen
 We can take a look at our captured guilds and the current leaderboard.
 
 <p align="center">
-<img src="./assets/guilds and leaderboard" width="320">
+<img src="./assets/guilds and leaderboard.png" width="320">
 
 Fig 3: List
 </p>
