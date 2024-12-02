@@ -1,111 +1,83 @@
-# Házi feladat specifikáció
+# Specification
 
-Információk [itt](https://viauav21.github.io/laborok/hf)
 
-## Androidalapú szoftverfejlesztés
-### Dátum - 2024. tavaszi félév
+## Bachelor's Degree Work
+### Date - 2024. fall semester
 ### Simon Benedek Gábor - (CWTB5S)
 ### benedek.simon@gmail.com
-### Laborvezető: Gazdi László
+### Consultant: Gazdi László
 
-## Bemutatás
+## Introduction
 
-IRL pontfoglalós játék. A városban kihelyezett pontokat lehet elfoglalni, ezek pontot termelnek az adott játékosnak.
-A legtöbb pontot szerző a király! 
-A játék célja, hogy egy interaktív város-élményt adjon át és kimozdítsa az embereket.
+My application aims to motivate people to again cherish the city, the world around them, to see the community and be part of it, make it thrive. This app gives people the opportunity to visit previously unknown places, via the point-of-interests scattered throughout the map. It helps build habits to visit these places over and over again facilitating familiarity with our surroundings, increasing social interactions.
 
 
-## Főbb funkciók
 
-Pontok elfoglalása NFC chipek beolvasásával. Elfoglalt pontok listázása. Kihelyezett pontok megtekintése térképen.
+## Main Functions
+- Login to play
+- Capture Guilds via NFC
+- Hold onto Guilds to earn points and be on top of the leaderboard
+- Discover Guilds via the Guild map
+
+## Technologies:
 
 
-## Választott technológiák:
-
-
-- UI: A felhasználói felület Jetpack Compose-ban és MVVM architektúrával.
-- lista: a felhasználó láthatja majd az általa birtokolt pontokat
-- Firebase: az adatbáziskezelés egy firebase adatbázison keresztül fog működni (DI)
-- NFC: A játék NFC chipek használatával lesz elérhető
-- Map: Egy térképen megtekinthetőek a már kihelyezett pontok
+- UI: Compose UI with MVVM architecture.
+- Custom Backend: Custom backend written for this application
+- NFC: Use of NFC technology to read tags, and capture Guilds
+- Map: A map fragment with skins to show Guilds with style :)
 
 ___
 
-# Házi feladat dokumentáció
+# Documentation
 
 ### City of Guilds
 
 <img src="./assets/icon.png" width="160">
 
-**Legkésőbb a dokumentáció fázisban lecserélendő a saját ikonnal!**
 
-## Bemutatás
+## User Guide
 
-Az alkalmazás célja, hogy az emberek felfedezzék Budapestet. A városban kihelyezett 'Guild'-ek egy-egy érdekes pontot jelölnek.
-Az alkalmazás fejleszti a navigációs készséget, és lehetőleg kimozdítja az embereket. A mindennapokba tud egy kis játékot vinni.
-
-## Főbb funkciók
-
-Az alkalmazás kezeli a felhasználókat, be lehet jelentkezni.
-El lehet foglalni Guild-eket NFC technológia segítségével.
-Eltárolja az adott felhasználó által elfoglalt Guild-eket, hogy mikor foglaltuk el azokat.
-Egy térképen fel meg lehet tekinteni a városban található tag-eket.
-A felhasználó által szerzett pontokat még nem számolja.
-
-
-## Felhasználói kézikönyv
-
-Az alkalmazás indulásakor egy bejelentkező képernyő fogad minket. Amennyiben nem rendelkezünk fiókkal, regisztrációs lehetőség is van.
+After starting the app, we are greeted with a login screen. If we do not have an account yet, we can sign up for one.
 
 <p align="center">
 <img src="./assets/login.png" width="320">
+<img src="./assets/register.png" width="320">
 
-1. ábra: Bejelentkezés
+Fig 1: Login
 </p>
 
-A fő képernyőn kiválaszthatjuk gombok segítségével melyik funkciót szeretnénk igénbe venni, vagy kijelentkezhetünk a bal felső sarokban elhelyezett iconnal.
+Home screen, where we can navigate via the drawer
 
 <p align="center">
-<img src="./assets/mainscreen.png" width="320">
+<img src="./assets/home.png" width="320">
 
-2. ábra: Főképernyő
+Fig 2: Home Screen
 </p>
 
-A listázásnál láthatjuk az általunk birtokolt pontokat.
+We can take a look at our captured guilds and the current leaderboard.
 
 <p align="center">
-<img src="./assets/capturedpoints.png" width="320">
+<img src="./assets/guilds and leaderboard" width="320">
 
-3. ábra: Listázás
+Fig 3: List
 </p>
 
-A pontfoglalásnál igénybe vehetjük az NFC funkciót. Amíg nem közelítünk meg egy megfelelő NFC taget, addig az egyik, majd a másik feliratot láthatjuk és egy gombot, hogy elfoglaljuk a Guild-et.
+If we want to capture a guild we will have to approach an NFC tag. If it contains a guild we can capture it, after completing a minigame.
 
 <p align="center">
-<img src="./assets/noguild_framed.png" width="320">
-<img src="./assets/guildtotake_framed.png" width="320">
-
-4. ábra: Az NFC tag megtalálása előtt és után
+<img src="./assets/no guild capture.png" width="320">
+<img src="./assets/guild found capture.png" width="320">
+<img src="./assets/minigame.png" width="320">
+  
+Fig 4: Capture process
 </p>
 
-Egy stílusos térképen láthatjuk az elérhető pontokat a városban.
+We can also look at the map for capturable guilds.
 <p align="center">
-<img src="./assets/guildsmap.png" width="320">
+<img src="./assets/guilds map.png" width="320">
 
-5. ábra: Térkép az elérhető pontokkal
+Fig 5: Map with available Guilds
 </p>
 
-## Felhasznált technológiák:
 
-- **NFC** intentek fogadása, a telefon által küldött intent feldolgozása, nincs szükség külső alkalmazásra
-- **Google Maps** felhasználása
-- **Firebase Authentikáció**
-- **Firebase Firestore** adattárolás
-
-## Fontosabb technológiai megoldások
-
-A projektben a nehézséget az NFC kommunikáció megoldása jelentette.
-Először az *Alarm* labor mintájára akartam írni valami service szerűséget, ami intenteket fogad, stb., de az nem sikerült.
-Utána elengedtem az egész BroadcastReciever dolgot és egyszerűen a MainActivity-m kezeli le a beérkezett intenteket, tovaküldi a megfelelő viewModel-nek.
-Így már működött a dolog, csak mindig megnyílt egy új applikáció, de szerencsére megtaláltam, hogy hogyan biztosíthatom, hogy mindig csak 1 példány fusson az alkalmazásból és csak akkor fogadja az Intenteket, amikor épp ő van fókuszban.
-Az onResume és onPause függvények jelzik a viewModel-nek, hogy épp fogadja-e a megkereséseket. Azt, hogy csak egy példány fusson azt pedig az Intent.FLAG_ACTIVITY_SINGLE_TOP oldotta meg.
