@@ -80,4 +80,5 @@ We can also look at the map for capturable guilds.
 Fig 5: Map with available Guilds
 </p>
 
+The Backend project can be found here: https://github.com/Bendoair/CityOfGuildsBackend.git 
 
