@@ -5,7 +5,7 @@ import hu.bme.aut.android.cityofguilds.domain.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class DummyAuthService : AuthService {
+class DummyAuthService() : AuthService {
     private var _currentUserId:String? = null
 
     override val currentUserId: String?
@@ -18,6 +18,7 @@ class DummyAuthService : AuthService {
         } else {
             flow{ User(id = _currentUserId!!) }
         }
+    override val currentToken: String? = null
 
     override suspend fun signUp(email: String, password: String) {
         _currentUserId = email + password
@@ -27,13 +28,10 @@ class DummyAuthService : AuthService {
         _currentUserId = email + password
     }
 
-    override suspend fun sendRecoveryEmail(email: String) {
-        //Do nothing
+    override suspend fun tryGetTokenFromStore() {
+        TODO("Not yet implemented")
     }
 
-    override suspend fun deleteAccount() {
-        //Do nothing
-    }
 
     override suspend fun signOut() {
         _currentUserId = null

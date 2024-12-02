@@ -35,6 +35,9 @@ interface RetrofitService {
     @GET("users/{userId}")
     suspend fun getUser(@Path("userId") userId: String): User?
 
+    @GET("users/leaderboard")
+    suspend fun getLeaderboard():List<User>
+
     companion object{
         const val BASE_URL = "http://46.139.171.101:8080/" //188.6.3.79:8080/
     }

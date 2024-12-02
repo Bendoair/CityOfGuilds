@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface PointService {
     val points: Flow<List<Point>>
 
+    suspend fun getLeaderboardUsers():List<User>
+
     suspend fun getPoint(id: String): Point?
 
     suspend fun addNewPoint(point: Point) : Point

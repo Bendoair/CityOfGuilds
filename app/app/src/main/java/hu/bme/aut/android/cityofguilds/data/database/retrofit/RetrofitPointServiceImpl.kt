@@ -20,6 +20,10 @@ class RetrofitPointServiceImpl @Inject constructor(
         emit(retrofitService.getAllPoints().map { it.toPoint() })
     }
 
+    override suspend fun getLeaderboardUsers(): List<User> {
+        return retrofitService.getLeaderboard()
+    }
+
     override suspend fun getPoint(id: String): Point? {
         return retrofitService.getPoint(id)?.toPoint()
     }

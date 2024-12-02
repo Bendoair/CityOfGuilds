@@ -3,7 +3,9 @@ package hu.bme.aut.android.cityofguilds.feature.list
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,7 +33,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.play.integrity.internal.i
 import hu.bme.aut.android.cityofguilds.R
+import hu.bme.aut.android.cityofguilds.domain.model.User
 import hu.bme.aut.android.cityofguilds.ui.model.CapturePointListItem
+import hu.bme.aut.android.cityofguilds.ui.model.Leaderboard
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
 import hu.bme.aut.android.cityofguilds.ui.theme.ParchmentBrown
 import hu.bme.aut.android.cityofguilds.ui.util.TestTags
@@ -78,8 +82,8 @@ fun ListScreen (
                 }else{
                     LazyColumn (
                         modifier = Modifier
-                            .fillMaxSize()
-
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.5f)
                     ){
                         items(state.points.size){ i ->
 
@@ -96,6 +100,13 @@ fun ListScreen (
                             
                         }
                     }
+                    Leaderboard(
+                        currentUser = state.currentUser?: User(id = "Current User Not Found"),
+                        users =  state.leaderboardUsers,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.5f)
+                            .align(Alignment.BottomCenter))
                 }
             }
         }
