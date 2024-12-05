@@ -20,6 +20,7 @@ import hu.bme.aut.android.cityofguilds.data.auth.AuthService
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.domain.model.Point
 import hu.bme.aut.android.cityofguilds.domain.usecases.GuildUseCases
+import hu.bme.aut.android.cityofguilds.domain.usecases.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -32,7 +33,9 @@ import javax.inject.Inject
 class NfcHandlerViewModel @Inject constructor(
     private val pointOperations: GuildUseCases,
     private val authService: AuthService,
-    private val repository:PointService
+    private val repository:PointService,
+    private val captureGuildUseCase: UseCase.CaptureGuildUseCase,
+    private val getCurrentUserUseCase: UseCase.GetCurrentUserUseCase
     ) : ViewModel(){
     private val _state = NfcState.state
     val state = _state.asStateFlow()
@@ -164,9 +167,14 @@ class NfcHandlerViewModel @Inject constructor(
 
 
         val id = state.value.pointInfo?.id?:""
+        /*
         val guildCaptured = pointOperations.captureGuildUseCase(id, authService.currentUserId?:"", repository)
         Log.i("Capture", "Tried capturing guild with id: $id, the resulting guild was: $guildCaptured")
+
         return guildCaptured
+        */
+        val currUser = getCurrentUserUseCase.invoke() ?: return false
+        return captureGuildUseCase.invoke(pointId = id, userId = currUser.id)
     }
 
     fun enableNFC(context: Context) {

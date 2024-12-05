@@ -35,4 +35,5 @@
     <string name="continue_to_login">Continue to Login</string>
     <string name="loading_please_wait">Loading, please wait...</string>
     <string name="you_won_click_this_to_claim_guild">You won, click this to claim guild!</string>
+    <string name="current_user_cannot_be_found_try_logging_in_again">Current User cannot be found, try logging in again</string>
 </resources>

@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.domain.model.Point
 import hu.bme.aut.android.cityofguilds.domain.usecases.GuildUseCases
+import hu.bme.aut.android.cityofguilds.domain.usecases.UseCase
 import hu.bme.aut.android.cityofguilds.feature.list.PointsState
 import hu.bme.aut.android.cityofguilds.ui.model.CapturePointUi
 import hu.bme.aut.android.cityofguilds.ui.model.asCapturePointUi
@@ -27,7 +28,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MapViewModel @Inject constructor(
     private val pointOperations: GuildUseCases,
-    private val repository: PointService
+    private val repository: PointService,
+    private val listAllUseCaseUseCase: UseCase.ListAllUseCaseUseCase,
 ): ViewModel(){
 
     private val _state = MutableStateFlow(MapAndPointsState())
@@ -51,8 +53,12 @@ class MapViewModel @Inject constructor(
             _state.update { it.copy(isLoading = true) }
             CoroutineScope(coroutineContext).launch(Dispatchers.IO) {
                 try {
+                    /*
                     val points = pointOperations.listAllUseCase.invoke(repository)
                         .map { it.asCapturePointUi() }
+                    */
+                    val points = listAllUseCaseUseCase.invoke().map { it.asCapturePointUi() }
+
                     if (points.isEmpty()) {
                         throw Exception("There are no points on the map!")
                     }

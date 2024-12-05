@@ -11,6 +11,7 @@ import hu.bme.aut.android.cityofguilds.GuildApplication
 import hu.bme.aut.android.cityofguilds.data.auth.AuthService
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.domain.usecases.IsEmailValidUseCase
+import hu.bme.aut.android.cityofguilds.domain.usecases.UseCase
 import hu.bme.aut.android.cityofguilds.ui.model.UiText
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
 import hu.bme.aut.android.cityofguilds.ui.util.UiEvent
@@ -34,6 +35,7 @@ class LoginUserViewModel @Inject constructor(
     private val authService: AuthService,
     private val pointService:PointService,
     private val isEmailValid: IsEmailValidUseCase,
+    private val loginUseCase: UseCase.LoginUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow(LoginUserState())
@@ -79,7 +81,7 @@ class LoginUserViewModel @Inject constructor(
                             UiEvent.Failure(UiText.StringResource(StringResources.some_error_message))
                         )
                     } else {
-
+                        /*
                         Log.i("login", "authenticate called")
                         authService.authenticate(email, password)
                         Log.i("login", "authenticate finished")
@@ -88,7 +90,13 @@ class LoginUserViewModel @Inject constructor(
                         }else{
                             _uiEvent.send(UiEvent.Failure(UiText.DynamicString("Wrong Credentials")))
                         }
+                        */
 
+                        val loginResult = loginUseCase.invoke(email = email, password = password)
+                        when(loginResult){
+                            true -> _uiEvent.send(UiEvent.Success)
+                            false -> _uiEvent.send(UiEvent.Failure(UiText.DynamicString("Wrong Credentials")))
+                        }
                     }
                 }
             } catch (e: Exception) {

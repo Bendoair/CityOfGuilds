@@ -12,6 +12,7 @@ import hu.bme.aut.android.cityofguilds.data.auth.AuthService
 import hu.bme.aut.android.cityofguilds.data.database.PointService
 import hu.bme.aut.android.cityofguilds.domain.usecases.IsEmailValidUseCase
 import hu.bme.aut.android.cityofguilds.domain.usecases.PasswordsMatchUseCase
+import hu.bme.aut.android.cityofguilds.domain.usecases.UseCase
 import hu.bme.aut.android.cityofguilds.ui.model.UiText
 import hu.bme.aut.android.cityofguilds.ui.model.toUiText
 import hu.bme.aut.android.cityofguilds.ui.util.UiEvent
@@ -33,7 +34,8 @@ class RegisterUserViewModel @Inject constructor(
     private val pointService: PointService,
     private val authService: AuthService,
     private val isEmailValid: IsEmailValidUseCase,
-    private val passwordsMatch: PasswordsMatchUseCase
+    private val passwordsMatch: PasswordsMatchUseCase,
+    private val registerUseCase: UseCase.RegisterUseCase,
 ): ViewModel() {
     
     private val _state = MutableStateFlow(RegisterUserState())
@@ -87,9 +89,11 @@ class RegisterUserViewModel @Inject constructor(
                             UiEvent.Failure(UiText.StringResource(StringResources.some_error_message))
                         )
                     } else {
+                        /*
                         authService.signUp(email, password)
-
-
+                        _uiEvent.send(UiEvent.Success)
+                         */
+                        registerUseCase.invoke(email = email, password = password)
                         _uiEvent.send(UiEvent.Success)
                     }
                 }

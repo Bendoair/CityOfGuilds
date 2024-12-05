@@ -89,6 +89,12 @@ class RetrofitAuthService @Inject constructor(
     override suspend fun signOut() {
         _currentUserId = null
         _currentToken = null
+        wipeTokenFromStore()
+    }
+
+    private fun wipeTokenFromStore() {
+        val sharedPreferences = context.getSharedPreferences(SECURITY_PREFERENCE, Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString(KEY_ALIAS, "").apply()
     }
 
 
